@@ -1,0 +1,7 @@
+FROM rust:1.39.0
+WORKDIR /usr/src/kullaniciservisi
+COPY . .
+RUN cargo install diesel_cli --no-default-features --features "postgres"
+RUN cp deploy/postgresql.sh postgresql.sh
+RUN chmod +x ./postgresql.sh
+CMD ["./postgresql.sh"]
